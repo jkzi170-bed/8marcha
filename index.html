@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+
+<!-- Адаптация для телефонов -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Соня с 8 Марта</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff9af5,#a6e3ff);
+font-family:Arial;
+text-align:center;
+}
+
+h1{
+font-size:6vw;
+color:white;
+text-shadow:2px 2px 15px rgba(0,0,0,0.4);
+z-index:2;
+padding:0 10px;
+}
+
+button{
+margin-top:20px;
+padding:15px 30px;
+font-size:4vw;
+border:none;
+border-radius:15px;
+background:#ff4fd8;
+color:white;
+cursor:pointer;
+z-index:2;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+.parrot{
+position:absolute;
+width:12vw;
+max-width:120px;
+animation:dance 3s infinite ease-in-out;
+}
+
+@keyframes dance{
+0%{transform:translateY(0) rotate(0deg)}
+50%{transform:translateY(-20px) rotate(10deg)}
+100%{transform:translateY(0) rotate(-10deg)}
+}
+
+.fall{
+position:absolute;
+top:-50px;
+font-size:25px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+/* мобильные устройства */
+@media (max-width:600px){
+
+h1{
+font-size:9vw;
+}
+
+button{
+font-size:6vw;
+padding:12px 25px;
+}
+
+.parrot{
+width:20vw;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Соня, с 8 Марта! 🌸</h1>
+
+<button onclick="spawnParrots()">ЕЩЁ КОТИКОВ :З</button>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4c1b2d38fd.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const items = ["🌸","💖","🌺","🌷","✨","🎉"];
+
+function createItem(){
+const el = document.createElement("div");
+el.classList.add("fall");
+
+el.innerHTML = items[Math.floor(Math.random()*items.length)];
+
+el.style.left = Math.random()*100 + "vw";
+el.style.animationDuration = (3 + Math.random()*4) + "s";
+
+document.body.appendChild(el);
+
+setTimeout(()=>{
+el.remove();
+},7000);
+}
+
+setInterval(createItem,200);
+
+function spawnParrots(){
+
+for(let i=0;i<5;i++){
+
+const parrot = document.createElement("img");
+
+parrot.src="https://media.giphy.com/media/GeimqsH0TLDt4tScGw/giphy.gif";
+
+parrot.classList.add("parrot");
+
+parrot.style.left=Math.random()*90+"vw";
+parrot.style.top=Math.random()*80+"vh";
+
+document.body.appendChild(parrot);
+
+}
+
+}
+
+spawnParrots();
+
+</script>
+
+</body>
+</html>
